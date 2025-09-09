@@ -4,9 +4,8 @@ import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 
 export default defineConfig({
-  assetsInclude: ['**/*.jpg', '**/*.png', '**/*.svg'],
   plugins: [react()],
-  base: '/',
+  base: '',
   server: {
     port: 3000,
     strictPort: false,
@@ -19,28 +18,33 @@ export default defineConfig({
       }
     },
     hmr: {
-      overlay: true
+      overlay: true,
+      timeout: 30000
     }
   },
+  publicDir: 'public',
+  assetsInclude: ['**/*.jpg', '**/*.png', '**/*.svg', '**/*.gif'],
   resolve: {
     alias: {
-      '@': '/src'
+      '@': resolve(__dirname, 'src'),
+      '@assets': resolve(__dirname, 'assets'),
+      '@public': resolve(__dirname, 'public')
     }
   },
   build: {
-    outDir: 'dist',
+    outDir: resolve(__dirname, 'dist'),
     emptyOutDir: true,
     sourcemap: true,
     rollupOptions: {
-      input: {
-        main: './index.html'
-      },
+      input: resolve(__dirname, 'index.html'),
       output: {
         chunkFileNames: 'assets/[name]-[hash].js',
         entryFileNames: 'assets/[name]-[hash].js',
         assetFileNames: 'assets/[name]-[hash].[ext]'
       }
-    }
+    },
+    assetsDir: 'assets',
+    minify: process.env.NODE_ENV === 'production'
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom', 'lucide-react']
