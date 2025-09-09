@@ -23,7 +23,7 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2 group">
               <img
-                src="/assets/flexi4ulogo.jpg"
+                src={new URL('../../assets/flexi4ulogo.jpg', import.meta.url).href}
                 alt="Flexi4U logo"
                 className="w-10 h-10 rounded-lg object-contain group-hover:shadow-lg group-hover:shadow-amber-900/30 transition-all duration-300"
               />
