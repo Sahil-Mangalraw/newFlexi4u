@@ -12,6 +12,8 @@ export default defineConfig({
     emptyOutDir: true,
     outDir: 'dist',
     assetsDir: 'assets',
+    manifest: true, // Generate manifest for asset management
+    sourcemap: false, // Disable sourcemaps in production
     rollupOptions: {
       output: {
         manualChunks: undefined,
