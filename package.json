@@ -6,10 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "postbuild": "copy public\\.htaccess dist\\",
     "lint": "eslint .",
     "preview": "vite preview",
-    "deploy": "npm run build && npm run postbuild"
+    "prepare-deploy": "npm run build && node scripts/prepare-hostinger-deploy.js"
   },
   "dependencies": {
     "lucide-react": "^0.344.0",
