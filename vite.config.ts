@@ -1,35 +1,47 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+/// <reference types="vitest" />
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import { resolve } from 'path'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/',  // Use absolute paths for production
-  optimizeDeps: {
-    exclude: ['lucide-react'],
+  base: '/',
+  server: {
+    port: 3000,
+    strictPort: false,
+    open: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:80',
+        changeOrigin: true,
+        secure: false
+      }
+    },
+    hmr: {
+      overlay: true
+    }
+  },
+  resolve: {
+    alias: {
+      '@': '/src'
+    }
   },
   build: {
-    emptyOutDir: true,
     outDir: 'dist',
-    assetsDir: 'assets',
-    manifest: true, // Generate manifest for asset management
-    sourcemap: false, // Disable sourcemaps in production
+    emptyOutDir: true,
+    sourcemap: true,
     rollupOptions: {
+      input: {
+        main: './index.html'
+      },
       output: {
-        manualChunks: undefined,
-        entryFileNames: 'assets/[name].[hash].js',
-        chunkFileNames: 'assets/[name].[hash].js',
-        assetFileNames: (assetInfo) => {
-          const name = assetInfo.name || '';
-          // Keep original filenames for images
-          if (name.endsWith('.jpg') || 
-              name.endsWith('.png') || 
-              name.endsWith('.svg')) {
-            return 'assets/[name][extname]';
-          }
-          return 'assets/[name].[hash][extname]';
-        }
+        chunkFileNames: 'assets/[name]-[hash].js',
+        entryFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]'
       }
     }
   },
-});
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'react-router-dom', 'lucide-react']
+  }
+})

@@ -2,9 +2,26 @@ import React, { useEffect, useState } from 'react';
 import { Heart, Target, Users } from 'lucide-react';
 
 // Import images with error handling
-const piyushImg = new URL('../../assets/piyush.jpg', import.meta.url).href;
-const laxmiImg = new URL('../../assets/Laxminarayan.jpg', import.meta.url).href;
-const gauravImg = new URL('../../assets/gaurav.jpg', import.meta.url).href;
+const founders = [
+  {
+    name: 'Piyush Kumar',
+    role: 'Founder',
+    description: 'Blending healthcare with technology to create innovative solutions for better patient care.',
+    image: '/assets/piyush.jpg'
+  },
+  {
+    name: 'Khatik Laxminarayan',
+    role: 'Co-founder',
+    description: 'Passionate about patient care and ensuring every individual receives quality healthcare.',
+    image: '/assets/Laxminarayan.jpg'
+  },
+  {
+    name: 'Gaurav Kumar',
+    role: 'Co-founder',
+    description: 'Connecting physiotherapy to daily health routines for sustainable wellness.',
+    image: '/assets/gaurav.jpg'
+  }
+];
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -13,26 +30,7 @@ const About = () => {
     setIsVisible(true);
   }, []);
 
-  const founders = [
-    {
-      name: 'Piyush Kumar',
-      role: 'Founder',
-      description: 'Blending healthcare with technology to create innovative solutions for better patient care.',
-      image: piyushImg
-    },
-    {
-      name: 'Khatik Laxminarayan',
-      role: 'Co-founder',
-      description: 'Passionate about patient care and ensuring every individual receives quality healthcare.',
-      image: laxmiImg
-    },
-    {
-      name: 'Gaurav Kumar',
-      role: 'Co-founder',
-      description: 'Connecting physiotherapy to daily health routines for sustainable wellness.',
-      image: gauravImg
-    }
-  ];
+  // Local declaration was shadowing the imported one
 
   return (
     <div className="min-h-screen bg-stone-50">
