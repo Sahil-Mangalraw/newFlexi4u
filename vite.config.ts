@@ -4,8 +4,7 @@ import react from '@vitejs/plugin-react';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // Use relative base so assets load correctly when served from public_html on Hostinger
-  base: './',
+  base: '/',  // Use absolute paths for production
   optimizeDeps: {
     exclude: ['lucide-react'],
   },

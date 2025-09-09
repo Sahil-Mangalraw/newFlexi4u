@@ -67,6 +67,30 @@ public_html/ (on Hostinger)
 ```
 
 ## Troubleshooting
-- White page: Check browser console for 404 errors
-- Forms not working: Verify PHP files uploaded and DB credentials correct
-- Images not loading: Check asset paths in browser network tab
+
+### White Page Issues
+1. Check Browser Console (F12):
+   - Look for 404 errors on JavaScript/CSS files
+   - Verify all asset paths start with "/"
+   - Check for any JavaScript errors
+
+2. Verify .htaccess:
+   ```apache
+   RewriteEngine On
+   RewriteBase /
+   RewriteRule ^index\.html$ - [L]
+   RewriteCond %{REQUEST_FILENAME} !-f
+   RewriteCond %{REQUEST_FILENAME} !-d
+   RewriteRule . /index.html [L]
+   ```
+
+3. Asset Loading:
+   - All paths in index.html should be absolute (start with "/")
+   - Verify the assets/ directory contains all files
+   - Check file permissions (644 for files, 755 for directories)
+
+4. PHP Backend:
+   - Test API endpoints directly (/api/db.php)
+   - Check PHP error logs in Hostinger panel
+   - Verify database connection
+   - Ensure uploads directory is writable (775)

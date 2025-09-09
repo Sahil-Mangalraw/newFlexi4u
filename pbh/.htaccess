@@ -14,6 +14,7 @@ AddType text/css .css
     Header set X-Content-Type-Options "nosniff"
     Header set X-Frame-Options "SAMEORIGIN"
     Header set X-XSS-Protection "1; mode=block"
+    Header set Cache-Control "no-transform"
 </IfModule>
 
 # Enable CORS for assets
