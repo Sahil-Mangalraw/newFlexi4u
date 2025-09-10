@@ -1,11 +1,9 @@
-/// <reference types="vitest" />
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { resolve } from 'path'
 
 export default defineConfig({
   plugins: [react()],
-  base: '',
+  base: '/',
   server: {
     port: 3000,
     strictPort: false,
@@ -18,33 +16,26 @@ export default defineConfig({
       }
     },
     hmr: {
-      overlay: true,
-      timeout: 30000
+      overlay: true
     }
   },
-  publicDir: 'public',
-  assetsInclude: ['**/*.jpg', '**/*.png', '**/*.svg', '**/*.gif'],
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src'),
-      '@assets': resolve(__dirname, 'assets'),
-      '@public': resolve(__dirname, 'public')
+      '@': '/src'
     }
   },
   build: {
-    outDir: resolve(__dirname, 'dist'),
+    outDir: 'dist',
     emptyOutDir: true,
     sourcemap: true,
     rollupOptions: {
-      input: resolve(__dirname, 'index.html'),
+      input: 'index.html',
       output: {
         chunkFileNames: 'assets/[name]-[hash].js',
         entryFileNames: 'assets/[name]-[hash].js',
         assetFileNames: 'assets/[name]-[hash].[ext]'
       }
-    },
-    assetsDir: 'assets',
-    minify: process.env.NODE_ENV === 'production'
+    }
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom', 'lucide-react']
