@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Heart, Target, Users } from 'lucide-react';
+import piyushImg from '../../assets/piyush.jpg';
+import laxminarayanImg from '../../assets/Laxminarayan.jpg';
+import gauravImg from '../../assets/gaurav.jpg';
 
 // Import images with error handling
 const founders = [
@@ -7,19 +10,19 @@ const founders = [
     name: 'Piyush Kumar',
     role: 'Founder',
     description: 'Blending healthcare with technology to create innovative solutions for better patient care.',
-    image: '/assets/piyush.jpg'
+    image: piyushImg
   },
   {
     name: 'Khatik Laxminarayan',
     role: 'Co-founder',
     description: 'Passionate about patient care and ensuring every individual receives quality healthcare.',
-    image: '/assets/Laxminarayan.jpg'
+    image: laxminarayanImg
   },
   {
     name: 'Gaurav Kumar',
     role: 'Co-founder',
     description: 'Connecting physiotherapy to daily health routines for sustainable wellness.',
-    image: '/assets/gaurav.jpg'
+    image: gauravImg
   }
 ];
 
@@ -113,7 +116,7 @@ const About = () => {
                 className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl hover:shadow-amber-900/10 transition-all duration-300 hover:-translate-y-2 group"
               >
                 <img 
-                  src={`${founder.image}?v=${Date.now()}`}
+                  src={founder.image}
                   alt={founder.name}
                   className="w-32 h-32 rounded-full mx-auto mb-6 object-cover group-hover:shadow-lg group-hover:shadow-amber-900/20 transition-all duration-300"
                 />
