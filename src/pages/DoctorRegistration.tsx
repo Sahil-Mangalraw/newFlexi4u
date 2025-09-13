@@ -11,7 +11,7 @@ const DoctorRegistration = () => {
     ndaAccepted: false
   });
   
-  const [files, setFiles] = useState({
+  const [files, setFiles] = useState<{ photo: File | null; aadhaar: File | null; degree: File | null }>({
     photo: null,
     aadhaar: null,
     degree: null
@@ -35,7 +35,7 @@ const DoctorRegistration = () => {
     }));
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, fileType: string) => {
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, fileType: 'photo' | 'aadhaar' | 'degree') => {
     const file = e.target.files?.[0];
     if (file) {
       setFiles(prev => ({
@@ -68,7 +68,7 @@ const DoctorRegistration = () => {
       form.append('aadhaar', files.aadhaar);
       form.append('degree', files.degree);
 
-      const response = await fetch('/doctor-handler.php', {
+      const response = await fetch('/api/doctor-handler.php', {
         method: 'POST',
         body: form
       });

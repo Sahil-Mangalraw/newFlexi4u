@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Heart, Target, Users } from 'lucide-react';
 
 // Import images with error handling
-const piyushImg = new URL('/assets/piyush.jpg', import.meta.url).href;
-const laxmiImg = new URL('/assets/Laxminarayan.jpg', import.meta.url).href;
-const gauravImg = new URL('/assets/gaurav.jpg', import.meta.url).href;
+const piyushImg = new URL('../../assets/piyush.jpg', import.meta.url).href;
+const laxmiImg = new URL('../../assets/Laxminarayan.jpg', import.meta.url).href;
+const gauravImg = new URL('../../assets/gaurav.jpg', import.meta.url).href;
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
